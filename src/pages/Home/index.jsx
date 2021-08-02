@@ -1,10 +1,23 @@
 import { memo } from "react";
+import { useDispatch } from "react-redux";
+import { setSums } from "../../redux/modules/resulSum";
+import { useHistory } from "react-router-dom";
 
 const Home = () => {
+   const dispatch = useDispatch();
+
+   dispatch(setSums({
+       name: "Nael"
+   }))
+   let history = useHistory();
+
+   function handleClick() {
+        history.push("/month");
+    }
 
     return(
         <div>
-            <div>
+            <div onClick={handleClick}>
                 <p>Month: August</p>
                 <div>
                     <p>Gastos: 745.45</p>
