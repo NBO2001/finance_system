@@ -10,12 +10,10 @@ const App = () => {
 
   return (
     <Router>
-
       <Switch>
           <Route path="/month" component={Month} />
           <Route path="/" component={Home} />
       </Switch>
-
     </Router>
   )
 
