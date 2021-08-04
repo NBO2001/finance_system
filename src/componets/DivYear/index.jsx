@@ -18,7 +18,7 @@ const DivYear = ({yearName, onClick}) => {
 
     return(
         <div>
-            <p>Year: 2021</p>
+            <p>Year: {yearName}</p>
             <div>
                 <p>Gastos: {valsYear && valsYear.desp}</p>
                 <p>Receita: {valsYear && valsYear.invs}</p>

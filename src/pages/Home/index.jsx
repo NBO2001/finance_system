@@ -4,20 +4,21 @@ import AddSumDispatch from "../../utils/functions/AddSumDispatch";
 import { DivMonth, DivYear } from "../../componets";
 
 const Home = () => {
+    const month = 8;
+    const year = 2021;
+    let history = useHistory();
     
-    AddSumDispatch(8, 2021, false);
+    AddSumDispatch(month, year, false);
 
-   let history = useHistory();
-
-   function handleClick() {
+   const handleClick  = () => {
         history.push("/month");
     }
 
     return(
         <div>
            
-            <DivMonth monthName="8" onClick={handleClick}/>
-            <DivYear yearName="2021" />
+            <DivMonth monthName={month} onClick={handleClick}/>
+            <DivYear yearName={year}/>
         </div>
     )
 }

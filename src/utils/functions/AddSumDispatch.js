@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import showSum from "../requests/showSum";
 import PropTypes from "prop-types";
 
-import { setSums } from "../../redux/modules/resulSum";
+import { setSums, setConsultMonth } from "../../redux/modules/resulSum";
 
 const AddSumDispatch = async (month, year, clear) => {
     
@@ -14,8 +14,12 @@ const AddSumDispatch = async (month, year, clear) => {
     .then((res) => {
         return res;
     });
-    data && dispatch(setSums(data));
-
+    if(data){
+        dispatch(setSums(data));
+        let [ { inMonth }] = data;
+        dispatch(setConsultMonth({inMonth, mon: month}));
+    }
+    
 }
 
 export default AddSumDispatch;
