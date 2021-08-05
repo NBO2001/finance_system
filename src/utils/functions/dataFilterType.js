@@ -1,7 +1,7 @@
 
 const dataFilterType = (listData, filterTypes=false) => {
-    if(!filterTypes){return listData;}
-
+    if(!filterTypes.length){return listData;}
+    if(!listData.length){ return listData;}
     let tempArray = [];
     listData.map((obj) => {
         filterTypes.map((type) => {
@@ -10,10 +10,9 @@ const dataFilterType = (listData, filterTypes=false) => {
             }
             return true;
         })
-       
+        
         return true;
     })
-
     return tempArray;
 }
 

@@ -1,20 +1,20 @@
+import { useEffect } from "react";
 import { memo, useState } from "react";
 import { useSelector } from "react-redux";
 import dataFilterType from "../../utils/functions/dataFilterType";
+
 const TableRegists = () => {
-    const [filter, setFilter] = useState({
+    let [filter, setFilter] = useState({
         type: [],
         situation: false
 
     });
+    const [data, setData ] = useState();
+
     const { regData } = useSelector(state => state.dataMonth);
-
-    console.log(filter);
-
     const addFilterState = (filterValue) => {
 
         let filterNow = filter.type;
-
         let valIdx = filterNow.indexOf(filterValue);
 
         if(valIdx >= 0 && valIdx !== -1){
@@ -37,14 +37,23 @@ const TableRegists = () => {
 
     }
 
-    const filteredData = dataFilterType(regData, filter.type);
-    //console.log(filter);
+    useEffect(() => {
+        const dataFilter = dataFilterType(regData, filter.type);
+        setData(dataFilter);
+    },[filter, regData])
     return(
        <>
             <div>
-                <button type="button" onClick={() => addFilterState(1)}>Receitas</button>
-                <button type="button" onClick={() => addFilterState(2)}>Investimentos</button>
-                <button type="button" onClick={() => addFilterState(3)}>Gastos</button>
+                <button type="button" onClick={() => addFilterState(2)}>Receitas</button>
+                <button type="button" onClick={() => addFilterState(3)}>Investimentos</button>
+                <button type="button" onClick={() => addFilterState(1)}>Gastos</button>
+            </div>
+            <div>
+                {data && data.map((obj) => {
+                    return(
+                        <p key={obj.id}> {obj.name} --  {obj.val} </p>
+                    )
+                })}
             </div>
        </>
     )
