@@ -12,6 +12,7 @@ const TableRegists = () => {
     const [data, setData ] = useState();
 
     const { regData } = useSelector(state => state.dataMonth);
+    
     const addFilterState = (filterValue) => {
 
         let filterNow = filter.type;
@@ -51,7 +52,7 @@ const TableRegists = () => {
             <div>
                 {data && data.map((obj) => {
                     return(
-                        <p key={obj.id}> {obj.name} --  {obj.val} </p>
+                        <p key={obj.id}> {obj.name} --  {obj.val} -- {obj.type}</p>
                     )
                 })}
             </div>
