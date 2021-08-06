@@ -1,7 +1,8 @@
 import { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AddSumDispatch from "../../utils/functions/AddSumDispatch";
-import { DivMonth, DivYear, Modal } from "../../componets";
+import { DivMonth, DivYear, Modal, SectionWhite,
+    TopBar, Buttons, DivCards } from "../../componets";
 import addNewRegister from "../../utils/requests/addNewRegister";
 
 const Home = () => {
@@ -36,16 +37,22 @@ const Home = () => {
             setModalOpened(false)
         });
     }
-    
+
     return(
         <>
-            <button type="button" onClick={() => openModal()}> Adicionar Registro</button>
-            <div>
-            
-                <DivMonth monthName={month} onClick={handleClick}/>
-                <DivYear yearName={year}/>
-            </div>
+            <SectionWhite>
+                <TopBar>
+                    <Buttons type="success"  onClick={() => openModal()}> Adicionar valor</Buttons>
+                </TopBar>
 
+                <DivCards>
+                
+                    <DivMonth monthName={month} onClick={handleClick}/>
+                    <DivYear yearName={year}/>
+                    
+                </DivCards>
+            </SectionWhite>
+         
             <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
                 <form onSubmit={sendBack}>
                     <input type="text" name='name' onChange={addValue}/>

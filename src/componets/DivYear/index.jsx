@@ -1,5 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Card, Buttons, DivGeneric } from "../../componets";
 
 const DivYear = ({yearName, onClick}) => {
     const [valsYear, setValsYear] = useState();
@@ -17,14 +18,15 @@ const DivYear = ({yearName, onClick}) => {
     },[valsYear, sum]);
 
     return(
-        <div>
-            <p>Year: {yearName}</p>
-            <div>
-                <p>Gastos: {valsYear && valsYear.desp}</p>
-                <p>Receita: {valsYear && valsYear.invs}</p>
-                <p>Investimentos:{valsYear && valsYear.recp}</p> 
-            </div>
-        </div>
+        <Card title={yearName}>
+            
+            <DivGeneric height="100px">
+                <p>Gastos: {valsYear && (valsYear.desp).toFixed(2)}</p>
+                <p>Receita: {valsYear && (valsYear.invs).toFixed(2)}</p>
+                <p>Investimentos:{valsYear && (valsYear.recp).toFixed(2)}</p> 
+            </DivGeneric>
+            <Buttons>Detalhes</Buttons>
+        </Card>
     )
 }
 

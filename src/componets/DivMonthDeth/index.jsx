@@ -21,9 +21,9 @@ const DivMonthDeth = () => {
         <div>
         <p>Month: {month && retunNameOfMonth(month.mon)} </p>
         <div>
-            <p>Gastos: {valsMonth && valsMonth.desp}</p>
-            <p>Investimentos: {valsMonth && valsMonth.invs}</p>
-            <p>Receita: {valsMonth && valsMonth.recp}</p>
+            <p>Gastos: {valsMonth && (valsMonth.desp).toFixed(2)}</p>
+            <p>Investimentos: {valsMonth && (valsMonth.invs).toFixed(2)}</p>
+            <p>Receita: {valsMonth && (valsMonth.recp).toFixed(2)}</p>
         </div>
     </div>
     )

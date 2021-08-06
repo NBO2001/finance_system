@@ -1,6 +1,7 @@
 import { memo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import retunNameOfMonth from "../../utils/format/retunNameOfMonth";
+import { Card, Buttons, DivGeneric } from "../../componets";
 
 const DivMonth = ({monthName, onClick}) => {
 
@@ -18,14 +19,14 @@ const DivMonth = ({monthName, onClick}) => {
         setValsMonth(mont(sum))
     },[valsMonth, sum]);
     return(
-        <div onClick={onClick}>
-        <p>{retunNameOfMonth(monthName)}</p>
-        <div>
-            <p>Gastos: {valsMonth && valsMonth.desp}</p>
-            <p>Investimentos: {valsMonth && valsMonth.invs}</p>
-            <p>Receita: {valsMonth && valsMonth.recp}</p>
-        </div>
-    </div>
+        <Card title={retunNameOfMonth(monthName)}>
+            <DivGeneric height="100px">
+                <p>Gastos: {valsMonth && (valsMonth.desp).toFixed(2)}</p>
+                <p>Investimentos: {valsMonth && (valsMonth.invs).toFixed(2)}</p>
+                <p>Receita: {valsMonth && (valsMonth.recp).toFixed(2)}</p>
+            </DivGeneric>
+            <Buttons onClick={onClick}>Detalhes</Buttons>
+        </Card>
     )
 }
 
