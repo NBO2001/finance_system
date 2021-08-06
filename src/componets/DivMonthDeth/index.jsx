@@ -1,5 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import retunNameOfMonth from "../../utils/format/retunNameOfMonth";
 
 const DivMonthDeth = () => {
     const [valsMonth, setValsMonth] = useState();
@@ -18,7 +19,7 @@ const DivMonthDeth = () => {
     },[valsMonth, month]);
     return(
         <div>
-        <p>Month: {month && month.mon} </p>
+        <p>Month: {month && retunNameOfMonth(month.mon)} </p>
         <div>
             <p>Gastos: {valsMonth && valsMonth.desp}</p>
             <p>Investimentos: {valsMonth && valsMonth.invs}</p>

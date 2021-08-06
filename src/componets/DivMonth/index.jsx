@@ -1,5 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import retunNameOfMonth from "../../utils/format/retunNameOfMonth";
 
 const DivMonth = ({monthName, onClick}) => {
 
@@ -18,7 +19,7 @@ const DivMonth = ({monthName, onClick}) => {
     },[valsMonth, sum]);
     return(
         <div onClick={onClick}>
-        <p>Month: {monthName}</p>
+        <p>{retunNameOfMonth(monthName)}</p>
         <div>
             <p>Gastos: {valsMonth && valsMonth.desp}</p>
             <p>Investimentos: {valsMonth && valsMonth.invs}</p>

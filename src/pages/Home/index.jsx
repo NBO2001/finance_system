@@ -16,7 +16,6 @@ const Home = () => {
         situation: '',
         dataLan: ''
     })
-
     AddSumDispatch(month, year, false);
 
    const handleClick  = () => {
@@ -58,6 +57,7 @@ const Home = () => {
                         <option value="3">Dívida</option>
                     </select>
                     <select name="situation" onChange={addValue}>
+                        <option >Options</option>
                         <option value="2">Paga</option>
                         <option value="1">Não-Paga</option>
                     </select>
