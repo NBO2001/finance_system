@@ -14,3 +14,8 @@ export { default as Inputs } from "./Inputs";
 export { default as Selects} from "./Selects";
 export { default as FormAddRegister} from "./FormAddRegister";
 export { default as CardDash } from "./CardDash";
+export { default as ConteinnerDay } from "./ConteinnerDay";
+export { default as DivItem } from "./DivItem";
+export { default as CicloButtons } from "./CicloButtons";
+export { default as LabelSituation} from "./LabelSituation";
+export { default as SpanValue} from "./SpanValue";

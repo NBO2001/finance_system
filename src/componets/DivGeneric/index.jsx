@@ -1,4 +1,4 @@
-import {DivMargin, DivSty, DivItensCenter} from "./style";
+import {DivMargin, DivSty, DivItensCenter, FlexRow} from "./style";
 
 const DivGeneric = ({typeDiv,width ,height, children}) => {
      switch(typeDiv){
@@ -13,6 +13,12 @@ const DivGeneric = ({typeDiv,width ,height, children}) => {
                     <DivItensCenter width={width} height={height}>
                           {children}
                     </DivItensCenter>
+               )
+          case "flex-row":
+               return(
+                    <FlexRow width={width} height={height}>
+                          {children}
+                    </FlexRow>
                )
           default:
                return(

@@ -1,34 +1,47 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { TableRegists, SectionWhite,TopBar,Buttons,
-     DivGeneric, CardDash } from "../../componets";
+     DivGeneric, CardDash, Modal, FormAddRegister } from "../../componets";
 
 const Month = () => {
 
     let history = useHistory();
 
+    const [modalOpened, setModalOpened] = useState(false);
+
     function handleClick() {
         history.push("/");
     }
 
+    const openModal = () => {
+        setModalOpened(true);
+    }
+
     return(
-        <SectionWhite>
+        <>
+            <SectionWhite>
 
-            <TopBar>
-                <Buttons typeButton="success" type="button" > Adicionar valor</Buttons>
-            </TopBar>
+                <TopBar>
+                    <Buttons onClick={() => openModal()} typeButton="success" type="button" > Adicionar valor</Buttons>
+                </TopBar>
 
-            <DivGeneric typeDiv="with-margin">
-                <Buttons type="button" typeButton="default-outline" onClick={handleClick}>Voltar</Buttons>
-            </DivGeneric>
+                <DivGeneric typeDiv="with-margin">
+                    <Buttons type="button" typeButton="default-outline" onClick={handleClick}>Voltar</Buttons>
+                </DivGeneric>
 
-            <DivGeneric height="300px" typeDiv="alings-center">
-                <CardDash />
-            </DivGeneric>
+                <DivGeneric height="300px" typeDiv="alings-center">
+                    <CardDash />
+                </DivGeneric>
 
-            <TableRegists />
-       
-        </SectionWhite>
+                <TableRegists />
+        
+            </SectionWhite>
+
+            <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
+                <FormAddRegister />
+                <Buttons typeButton="exit" onClick={() => setModalOpened(false)}>Sair</Buttons>
+            </Modal>
+        </>
     )
 
 }

@@ -15,9 +15,17 @@ export const DivMargin = styled.div`
      margin: 10px;
 `;
 
+export const FlexRow = styled.div`
+     display:flex;
+     align-items: center;
+     justify-content: space-between;
+     min-width: ${(props) => props.width};
+`;
+
+
 export const DivItensCenter = styled.div`
      width: ${(props) => props.width? props.width: "100vw"};
-     height: ${(props) => props.height? props.height: "50vh"};
+     min-height: ${(props) => props.height? props.height: "50vh"};
      display: flex;
      flex-direction: row;
      justify-content: center;

@@ -3,6 +3,8 @@ import { memo, useState } from "react";
 import { useSelector } from "react-redux";
 import dataFilterType from "../../utils/functions/dataFilterType";
 import deleteRegister from "../../utils/requests/deleteRegister";
+import returnArrayFilters from "../../utils/functions/returnArrayFilters";
+import { DivGeneric, ConteinnerDay } from "../../componets";
 
 const TableRegists = () => {
     let [filter, setFilter] = useState({
@@ -15,28 +17,7 @@ const TableRegists = () => {
     const { regData } = useSelector(state => state.dataMonth);
     
     const addFilterState = (filterValue) => {
-
-        let filterNow = filter.type;
-        let valIdx = filterNow.indexOf(filterValue);
-
-        if(valIdx >= 0 && valIdx !== -1){
-            filterNow.splice(valIdx, 1);
-
-            let tempTes = {
-                ...filter,
-                type: filterNow
-            }
-
-            setFilter(tempTes);
-        }else{
-            let tempTes = {
-                ...filter,
-                type: [...filterNow,filterValue]
-            }
-
-            setFilter(tempTes);
-        }
-
+        setFilter(returnArrayFilters(filter, filterValue))
     }
 
     const regDelete = async (id) => {
@@ -52,21 +33,17 @@ const TableRegists = () => {
         const dataFilter = dataFilterType(regData, filter.type);
         setData(dataFilter);
     },[filter, regData])
+    
     return(
-       <>
-            <div>
-                <button type="button" onClick={() => addFilterState(1)}>Receitas</button>
-                <button type="button" onClick={() => addFilterState(2)}>Investimentos</button>
-                <button type="button" onClick={() => addFilterState(3)}>Gastos</button>
-            </div>
-            <div>
+       <DivGeneric typeDiv="alings-center">
+            <ConteinnerDay>
                 {data && data.map((obj) => {
                     return(
                         <p key={obj.id}> {obj.name} --  {obj.val} -- {obj.type} <button onClick={() => regDelete(obj.id)}> Delete </button></p>
                     )
                 })}
-            </div>
-       </>
+            </ConteinnerDay>
+       </DivGeneric>
     )
 
 }

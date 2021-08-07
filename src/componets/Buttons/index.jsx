@@ -1,5 +1,5 @@
 import { ButtonDefault,ButtonSuccess, ButtonExit,
-      ButtonSuccessOutLine, ButtonDefaultOutline, Arrow } from "./style"
+      ButtonSuccessOutLine, ButtonDefaultOutline, Arrow,ButtonEdit, ButtonDelete } from "./style"
 
 const Buttons = ({onClick,children,typeButton,type}) => {
      switch(typeButton){
@@ -27,12 +27,19 @@ const Buttons = ({onClick,children,typeButton,type}) => {
                return (
                     <Arrow type={type} onClick={onClick}><i className="fas fa-arrow-alt-circle-right"></i></Arrow>
                )
+          case "button-edit":
+               return (
+                    <ButtonEdit type={type} onClick={onClick}><i class="fas fa-pencil-alt"></i></ButtonEdit>
+               )
+          case "button-delete":
+               return (
+                    <ButtonDelete type={type} onClick={onClick}><i class="fas fa-trash-alt"></i> </ButtonDelete>
+               )
           default:
                return(
                     <ButtonDefault type={type} onClick={onClick}>{children}</ButtonDefault>
                )
      }
-    // 
 }
 
 export default Buttons;

@@ -61,13 +61,35 @@ export const ButtonSuccessOutLine = styled(ButtonSuccess)`
      }
 `;
 
-export const Arrow = styled.i`
+export const Arrow = styled.button`
+     border: 0;
+     padding: 0.5rem;
+     background-color: ${(props) => props.theme.colors.backgroudcard};
      font-size: 3em;
      cursor: pointer;
      :hover{
           color: ${(props) => props.theme.alerts.default};
      }
 `;
+
+export const ButtonEdit = styled.button`
+     font-size: 1.5em;
+     cursor: pointer;
+     border: 0;
+     border-radius: 50%;
+     height: 60px;
+     width: 60px;
+
+     background: ${(props) => props.theme.alerts.alerta};
+     :hover{
+          color: ${(props) => props.theme.colors.backgroud};
+     }
+`;
+
+export const ButtonDelete = styled(ButtonEdit)`
+     background: ${(props) => props.theme.alerts.danger};
+`;
+
 export const ButtonDefaultOutline = styled(ButtonDefault)`
      border: 1.2px solid ${(props) => props.theme.alerts.default};
      color: ${(props) => props.theme.alerts.default};
