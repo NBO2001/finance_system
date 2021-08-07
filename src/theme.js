@@ -7,9 +7,10 @@ const theme = {
           contras: '#FF640A',
      },
      alerts: {
-          success: '#00FF83',
+          success: '#24FF82',
           danger: '#FF2817',
-          alerta: '',
+          alerta: '#FFAA17',
+          primary: '#248DFF',
           default: '#FF640A'
      },
      fonts: {

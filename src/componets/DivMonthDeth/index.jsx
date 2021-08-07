@@ -1,8 +1,10 @@
 import { memo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import retunNameOfMonth from "../../utils/format/retunNameOfMonth";
+import { Conteinner, Title, ConteinterElementes } from "./style";
 
-const DivMonthDeth = () => {
+const DivMonthDeth = ({dateNow}) => {
+
     const [valsMonth, setValsMonth] = useState();
 
     const { month } = useSelector((state) => state.resulSum);
@@ -18,14 +20,18 @@ const DivMonthDeth = () => {
         setValsMonth(mont(month))
     },[valsMonth, month]);
     return(
-        <div>
-        <p>Month: {month && retunNameOfMonth(month.mon)} </p>
-        <div>
-            <p>Gastos: {valsMonth && (valsMonth.desp).toFixed(2)}</p>
-            <p>Investimentos: {valsMonth && (valsMonth.invs).toFixed(2)}</p>
-            <p>Receita: {valsMonth && (valsMonth.recp).toFixed(2)}</p>
-        </div>
-    </div>
+        <Conteinner>
+
+            <Title>{`${retunNameOfMonth(dateNow.month)} de ${dateNow.year}`}</Title>
+            
+            <ConteinterElementes>
+                <p>Gastos: R$ {valsMonth && (valsMonth.desp).toFixed(2)}</p>
+                <p>Investimentos: R$ {valsMonth && (valsMonth.invs).toFixed(2)}</p>
+                <p>Receita: R$ {valsMonth && (valsMonth.recp).toFixed(2)}</p>
+                <p>Livre: R$ 245,58</p>
+            </ConteinterElementes>
+
+        </Conteinner>
     )
 }
 

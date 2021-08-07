@@ -1,0 +1,25 @@
+import styled from "styled-components";
+
+export const DivSty = styled.div`
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     height: ${(props) => props.height};
+     font-style: normal;
+     font-weight: 300;
+
+`;
+export const DivMargin = styled.div`
+     width: ${(props) => props.width? props.width: "50vw"};
+     height: ${(props) => props.height};
+     margin: 10px;
+`;
+
+export const DivItensCenter = styled.div`
+     width: ${(props) => props.width? props.width: "100vw"};
+     height: ${(props) => props.height? props.height: "50vh"};
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+`;

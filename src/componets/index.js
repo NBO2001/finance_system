@@ -13,3 +13,4 @@ export { default as Form } from "./Form";
 export { default as Inputs } from "./Inputs";
 export { default as Selects} from "./Selects";
 export { default as FormAddRegister} from "./FormAddRegister";
+export { default as CardDash } from "./CardDash";

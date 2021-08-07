@@ -1,4 +1,5 @@
-import { ButtonDefault,ButtonSuccess, ButtonExit, ButtonSuccessOutLine } from "./style"
+import { ButtonDefault,ButtonSuccess, ButtonExit,
+      ButtonSuccessOutLine, ButtonDefaultOutline, Arrow } from "./style"
 
 const Buttons = ({onClick,children,typeButton,type}) => {
      switch(typeButton){
@@ -14,12 +15,24 @@ const Buttons = ({onClick,children,typeButton,type}) => {
                return (
                     <ButtonExit type={type} onClick={onClick}>{children}</ButtonExit>
                )
+          case "default-outline":
+               return (
+                    <ButtonDefaultOutline type={type} onClick={onClick}>{children}</ButtonDefaultOutline>
+               )
+          case "arrow-left":
+               return (
+                    <Arrow type={type} onClick={onClick}><i className="fas fa-arrow-alt-circle-left"></i></Arrow>
+               )
+          case "arrow-right":
+               return (
+                    <Arrow type={type} onClick={onClick}><i className="fas fa-arrow-alt-circle-right"></i></Arrow>
+               )
           default:
                return(
                     <ButtonDefault type={type} onClick={onClick}>{children}</ButtonDefault>
                )
      }
-    
+    // 
 }
 
 export default Buttons;

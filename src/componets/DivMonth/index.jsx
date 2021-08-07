@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import retunNameOfMonth from "../../utils/format/retunNameOfMonth";
 import { Card, Buttons, DivGeneric } from "../../componets";
 
-const DivMonth = ({monthName, onClick}) => {
-
+const DivMonth = ({dateNow, monthName, onClick}) => {
     const [valsMonth, setValsMonth] = useState();
 
     const { sum } = useSelector((state) => state.resulSum);
