@@ -1,14 +1,22 @@
-import { ButtonDefault,ButtonSuccess } from "./style"
+import { ButtonDefault,ButtonSuccess, ButtonExit, ButtonSuccessOutLine } from "./style"
 
-const Buttons = ({onClick,children,type}) => {
-     switch(type){
+const Buttons = ({onClick,children,typeButton,type}) => {
+     switch(typeButton){
           case "success":
                return(
-                    <ButtonSuccess onClick={onClick}>{children}</ButtonSuccess>
+                    <ButtonSuccess type={type} onClick={onClick}>{children}</ButtonSuccess>
+               )
+          case "success-outline":
+               return(
+                    <ButtonSuccessOutLine type={type} onClick={onClick}>{children}</ButtonSuccessOutLine>
+               )
+          case "exit":
+               return (
+                    <ButtonExit type={type} onClick={onClick}>{children}</ButtonExit>
                )
           default:
                return(
-                    <ButtonDefault onClick={onClick}>{children}</ButtonDefault>
+                    <ButtonDefault type={type} onClick={onClick}>{children}</ButtonDefault>
                )
      }
     

@@ -32,3 +32,30 @@ export const ButtonSuccess = styled.button`
           font-size: 1.2em;
      }
 `;
+export const ButtonExit = styled.button`
+     margin-right: 1rem;
+     height: 40px;
+     min-width: 150px;
+     border: 1.2px solid ${(props) => props.theme.alerts.danger};
+     color: ${(props) => props.theme.alerts.danger};
+     background: ${(props) => props.theme.colors.backgroud};
+     font-weight: bolder;
+     font-size: 1.1em;
+     border-radius: 10px;
+     cursor: pointer;
+     :hover{
+          background: ${(props) => props.theme.alerts.danger};
+          color: ${(props) => props.theme.colors.backgroud};
+          font-size: 1.2em;
+     }
+`;
+
+export const ButtonSuccessOutLine = styled(ButtonSuccess)`
+     border: 1.2px solid ${(props) => props.theme.alerts.success};
+     color: ${(props) => props.theme.alerts.success};
+     background: ${(props) => props.theme.colors.backgroud};
+     :hover{
+          background: ${(props) => props.theme.alerts.success};
+          color: ${(props) => props.theme.colors.backgroud};
+     }
+`

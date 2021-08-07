@@ -55,9 +55,9 @@ const TableRegists = () => {
     return(
        <>
             <div>
-                <button type="button" onClick={() => addFilterState(2)}>Receitas</button>
-                <button type="button" onClick={() => addFilterState(3)}>Investimentos</button>
-                <button type="button" onClick={() => addFilterState(1)}>Gastos</button>
+                <button type="button" onClick={() => addFilterState(1)}>Receitas</button>
+                <button type="button" onClick={() => addFilterState(2)}>Investimentos</button>
+                <button type="button" onClick={() => addFilterState(3)}>Gastos</button>
             </div>
             <div>
                 {data && data.map((obj) => {

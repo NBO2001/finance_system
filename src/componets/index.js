@@ -9,3 +9,7 @@ export { default as Buttons} from "./Buttons";
 export { default as DivCards } from "./DivCards";
 export { default as Card } from "./Card";
 export { default as DivGeneric } from "./DivGeneric";
+export { default as Form } from "./Form";
+export { default as Inputs } from "./Inputs";
+export { default as Selects} from "./Selects";
+export { default as FormAddRegister} from "./FormAddRegister";

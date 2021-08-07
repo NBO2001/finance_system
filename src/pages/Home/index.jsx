@@ -2,47 +2,27 @@ import { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AddSumDispatch from "../../utils/functions/AddSumDispatch";
 import { DivMonth, DivYear, Modal, SectionWhite,
-    TopBar, Buttons, DivCards } from "../../componets";
-import addNewRegister from "../../utils/requests/addNewRegister";
+    TopBar, Buttons, DivCards, FormAddRegister } from "../../componets";
 
 const Home = () => {
     const month = 8;
     const year = 2021;
     let history = useHistory();
     const [modalOpened, setModalOpened] = useState(false);
-    const [register, setRegister] = useState({
-        name: '',
-        val: '',
-        type: '',
-        situation: '',
-        dataLan: ''
-    })
     AddSumDispatch(month, year, false);
-
+    
    const handleClick  = () => {
         history.push("/month");
     }
     const openModal = () => {
         setModalOpened(true);
     }
-    const addValue = (e) => {
-        setRegister({
-            ...register,
-            [e.target.name]: e.target.value
-        });
-    } 
-    const sendBack = async (e) => {
-        e.preventDefault();
-        await addNewRegister(register).then(() => {
-            setModalOpened(false)
-        });
-    }
-
+   
     return(
         <>
             <SectionWhite>
                 <TopBar>
-                    <Buttons type="success"  onClick={() => openModal()}> Adicionar valor</Buttons>
+                    <Buttons typeButton="success" type="button"  onClick={() => openModal()}> Adicionar valor</Buttons>
                 </TopBar>
 
                 <DivCards>
@@ -52,25 +32,10 @@ const Home = () => {
                     
                 </DivCards>
             </SectionWhite>
-         
+    
             <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
-                <form onSubmit={sendBack}>
-                    <input type="text" name='name' onChange={addValue}/>
-                    <input type="text" name='val'  onChange={addValue} />
-                    <select name="type" onChange={addValue}>
-                        <option >Options</option>
-                        <option value="1">Receita</option>
-                        <option value="2">Investimento</option>
-                        <option value="3">Dívida</option>
-                    </select>
-                    <select name="situation" onChange={addValue}>
-                        <option >Options</option>
-                        <option value="2">Paga</option>
-                        <option value="1">Não-Paga</option>
-                    </select>
-                    <input type="date" name="dataLan" onChange={addValue}/>
-                    <button type="submit">Adicionar</button>
-                </form>
+                <FormAddRegister />
+                <Buttons typeButton="exit" onClick={() => setModalOpened(false)}>Sair</Buttons>
             </Modal>
         </>
     )

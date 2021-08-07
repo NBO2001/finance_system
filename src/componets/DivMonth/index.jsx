@@ -21,9 +21,9 @@ const DivMonth = ({monthName, onClick}) => {
     return(
         <Card title={retunNameOfMonth(monthName)}>
             <DivGeneric height="100px">
-                <p>Gastos: {valsMonth && (valsMonth.desp).toFixed(2)}</p>
-                <p>Investimentos: {valsMonth && (valsMonth.invs).toFixed(2)}</p>
                 <p>Receita: {valsMonth && (valsMonth.recp).toFixed(2)}</p>
+                <p>Investimentos: {valsMonth && (valsMonth.invs).toFixed(2)}</p>
+                <p>Gastos: {valsMonth && (valsMonth.desp).toFixed(2)}</p>
             </DivGeneric>
             <Buttons onClick={onClick}>Detalhes</Buttons>
         </Card>

@@ -21,9 +21,9 @@ const DivYear = ({yearName, onClick}) => {
         <Card title={yearName}>
             
             <DivGeneric height="100px">
+                <p>Receita: {valsYear && (valsYear.recp).toFixed(2)}</p>
+                <p>Investimentos:{valsYear && (valsYear.invs).toFixed(2)}</p> 
                 <p>Gastos: {valsYear && (valsYear.desp).toFixed(2)}</p>
-                <p>Receita: {valsYear && (valsYear.invs).toFixed(2)}</p>
-                <p>Investimentos:{valsYear && (valsYear.recp).toFixed(2)}</p> 
             </DivGeneric>
             <Buttons>Detalhes</Buttons>
         </Card>
