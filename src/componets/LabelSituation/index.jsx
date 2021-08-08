@@ -18,13 +18,21 @@ export const PD = styled(P)`
 
 const LabelSituation = ({situation, children}) => {
      switch(parseInt(situation)){
-          case 2:
+          case 1:
                return(
                     <PD>{children}</PD>
                )
-          default:
+          case 2:
                return(
                     <P>{children}</P>
+               )
+          case 3:
+               return(
+                    <P>{children}</P>
+               )
+          default:
+               return(
+                    <PD>{children}</PD>
                )
      }
     

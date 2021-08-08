@@ -1,13 +1,10 @@
 import { Conteinner, Title} from "./style";
 
-//Temp
-import { DivItem } from "../../componets";
-
-const ConteinnerDay = () => {
+const ConteinnerDay = ({title, children}) => {
      return(
           <Conteinner>
-               <Title>Ontem</Title>
-               <DivItem />
+               <Title>{title}</Title>
+               {children}
           </Conteinner>
      )
 }

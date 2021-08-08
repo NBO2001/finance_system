@@ -1,4 +1,4 @@
-import {DivMargin, DivSty, DivItensCenter, FlexRow} from "./style";
+import {DivMargin, DivSty, DivItensCenter, DivItensCenterColumn, FlexRow} from "./style";
 
 const DivGeneric = ({typeDiv,width ,height, children}) => {
      switch(typeDiv){
@@ -7,6 +7,12 @@ const DivGeneric = ({typeDiv,width ,height, children}) => {
                     <DivMargin width={width} height={height}>
                           {children}
                     </DivMargin>
+               )
+          case "center-with-collumn":
+               return(
+                    <DivItensCenterColumn width={width} height={height}>
+                         {children}
+                    </DivItensCenterColumn>
                )
           case "alings-center":
                return(

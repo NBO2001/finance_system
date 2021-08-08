@@ -31,3 +31,12 @@ export const DivItensCenter = styled.div`
      justify-content: center;
      align-items: center;
 `;
+
+export const DivItensCenterColumn = styled.div`
+     width: ${(props) => props.width? props.width: "100vw"};
+     min-height: ${(props) => props.height? props.height: "50vh"};
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+`;

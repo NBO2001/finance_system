@@ -29,11 +29,11 @@ const Buttons = ({onClick,children,typeButton,type}) => {
                )
           case "button-edit":
                return (
-                    <ButtonEdit type={type} onClick={onClick}><i class="fas fa-pencil-alt"></i></ButtonEdit>
+                    <ButtonEdit type={type} onClick={onClick}><i className="fas fa-pencil-alt"></i></ButtonEdit>
                )
           case "button-delete":
                return (
-                    <ButtonDelete type={type} onClick={onClick}><i class="fas fa-trash-alt"></i> </ButtonDelete>
+                    <ButtonDelete type={type} onClick={onClick}><i className="fas fa-trash-alt"></i> </ButtonDelete>
                )
           default:
                return(

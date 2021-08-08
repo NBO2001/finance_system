@@ -11,12 +11,12 @@ export const ValueI = styled(Value)`
      color: ${(props) => props.theme.alerts.alerta};
 `;   
 const SpanValue = ({type, value}) => {
-     switch(type){
-          case "yeallow":
+     switch(parseInt(type)){
+          case 2:
                return(
                     <ValueI>- {value}</ValueI>
                )
-          case "red":
+          case 3:
                return(
                     <ValueG>- {value}</ValueG>
                )

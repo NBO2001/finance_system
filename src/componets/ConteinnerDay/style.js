@@ -6,6 +6,7 @@ export const Conteinner = styled.div`
      border-radius: 10px;
      padding: 1rem;
      min-height: 150px;
+     margin-bottom: 10px;
 `;
 
 export const Title = styled.h2`
