@@ -9,9 +9,11 @@ const Month = () => {
 
     const [modalOpened, setModalOpened] = useState(false);
 
-    function handleClick() {
-        history.push("/");
-    }
+    const handleClick  = (away='') => {
+        
+        history.push(`/${away}`);
+   }
+
 
     const openModal = () => {
         setModalOpened(true);
@@ -26,7 +28,7 @@ const Month = () => {
                 </TopBar>
 
                 <DivGeneric typeDiv="with-margin">
-                    <Buttons type="button" typeButton="default-outline" onClick={handleClick}>Voltar</Buttons>
+                    <Buttons type="button" typeButton="default-outline" onClick={() => handleClick()}>Voltar</Buttons>
                 </DivGeneric>
 
                 <DivGeneric height="300px" typeDiv="alings-center">

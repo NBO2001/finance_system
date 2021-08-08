@@ -11,8 +11,8 @@ const Home = () => {
     const [modalOpened, setModalOpened] = useState(false);
     AddSumDispatch(month, year, false);
     
-   const handleClick  = () => {
-        history.push("/month");
+   const handleClick  = (away) => {
+        history.push(`/${away}`);
     }
     const openModal = () => {
         setModalOpened(true);
@@ -27,8 +27,8 @@ const Home = () => {
 
                 <DivCards>
                 
-                    <DivMonth monthName={month} onClick={handleClick}/>
-                    <DivYear yearName={year}/>
+                    <DivMonth monthName={month} onClick={() => handleClick("month")}/>
+                    <DivYear yearName={year} onClick={() => handleClick("year")}/>
                     
                 </DivCards>
             </SectionWhite>

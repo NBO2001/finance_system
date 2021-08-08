@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Home, Month } from './pages';
+import { Home, Month, Year } from './pages';
 import { ThemeProvider } from "styled-components";
 import { Reset } from "styled-reset";
 import theme from "./theme";
@@ -16,8 +16,9 @@ const App = () => {
       <Reset />
       <Router>
         <Switch>
+            <Route path="/" component={Home} exact />
             <Route path="/month" component={Month} />
-            <Route path="/" component={Home} />
+            <Route path="/year" component={Year} />
         </Switch>
       </Router>
 
