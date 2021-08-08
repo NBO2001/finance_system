@@ -24,7 +24,7 @@ export const Dialog = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 60vh;
+    min-height: ${(props) => props.height? props.height: "60vh"};
     max-width: 90vw;
     min-width: 40vw;
     padding: 24px;

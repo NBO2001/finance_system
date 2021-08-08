@@ -2,7 +2,7 @@ import React from "react";
 import PortalModal from './Portal';
 import { Overley, Dialog} from './styles';
 
-const Modal = ({ children, open, onClose}) => {
+const Modal = ({ children, open, onClose, height}) => {
 
     if(!open) return null;
 
@@ -18,7 +18,7 @@ const Modal = ({ children, open, onClose}) => {
     return (
         <PortalModal>
             <Overley onClick={onOverlayClick}>
-                <Dialog onClick={onDialogClick}>{children}</Dialog>
+                <Dialog height={height} onClick={onDialogClick}>{children}</Dialog>
             </Overley>
         </PortalModal>
     );

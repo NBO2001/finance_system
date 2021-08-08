@@ -19,3 +19,4 @@ export { default as DivItem } from "./DivItem";
 export { default as CicloButtons } from "./CicloButtons";
 export { default as LabelSituation} from "./LabelSituation";
 export { default as SpanValue} from "./SpanValue";
+export { default as FormAlterItem } from "./FormAlterItem";

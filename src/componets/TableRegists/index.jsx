@@ -7,14 +7,16 @@ import returnArrayFilters from "../../utils/functions/returnArrayFilters";
 import getSituation from "../../utils/format/getSituation";
 import getItemDate from "../../utils/format/getItemDate";
 import orderArray from "../../utils/format/ordeArray";
-import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue, LabelSituation,Buttons } from "../../componets";
+import returnItemForId from "../../utils/requests/returnItemForId";
+import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue, LabelSituation, Buttons, Modal, FormAlterItem } from "../../componets";
 
 const TableRegists = () => {
     let [filter, setFilter] = useState({
         type: [],
         situation: false
     });
-
+    const [content, setContent] = useState();
+    const [modalOpened, setModalOpened] = useState(false);
     const [data, setData ] = useState();
 
     const { regData } = useSelector(state => state.dataMonth);
@@ -24,9 +26,10 @@ const TableRegists = () => {
     }
 
     const regDelete = async (id) => {
+        if(!id) return false;
         await deleteRegister(id)
         .then((res) => {
-            console.log(regData)
+            setModalOpened(false);
         }).catch((err) => {
             console.log(err)
         })
@@ -48,19 +51,38 @@ const TableRegists = () => {
         })
         return orderArray(days);
     }
-   
-    let days = getDays();
+    const setDataItem = async (ind) => {
+        return await returnItemForId(ind).then((res) => {
+            return res.data.resul; 
+        });
+    }
+    const buttonEdit = async (idd) => {
+        return await setDataItem(idd).then((res) => {
+            let [ val ] = res;
+            setContent(
+                <FormAlterItem id={idd} data={val}/>
+            )
+            setModalOpened(true);
+        })
+    }
 
+    let days = getDays();
+    const buttonDelete = (idd) => {
+        setContent(
+            <div>
+                <p>Deseja excluir item? </p>
+                <Buttons typeButton="success-outline" onClick={() => regDelete(idd)} >Sim</Buttons>
+            </div>
+        )
+        setModalOpened(true);
+    };
+    
     useEffect(() => {
         const dataFilter = dataFilterType(regData, filter.type);
         setData(dataFilter);
-    },[filter, regData])
-    // {data && data.map((obj) => {
-    //     return(
-    //         <p key={obj.id}> {obj.name} --  {obj.val} -- {obj.type} <button onClick={() => regDelete(obj.id)}> Delete </button></p>
-    //     )
-    // })}
+    },[filter, regData]);
     return(
+        <>
        <DivGeneric typeDiv="center-with-collumn">
             {days && days.map((day) => {
                 return(
@@ -84,8 +106,8 @@ const TableRegists = () => {
 
 
                                         <DivGeneric width="150px" typeDiv="flex-row">
-                                            <Buttons typeButton='button-edit' />
-                                            <Buttons typeButton='button-delete' />
+                                            <Buttons typeButton='button-edit' onClick={() => buttonEdit(obj.id)} />
+                                            <Buttons typeButton='button-delete' onClick={() => buttonDelete(obj.id)} />
                                         </DivGeneric>
                                     </DivItem>
                                 )
@@ -97,6 +119,12 @@ const TableRegists = () => {
                 )
             })}
        </DivGeneric>
+
+       <Modal height="200px" open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
+            {content}
+            <Buttons typeButton="exit" onClick={() => setModalOpened(false)}>Fechar</Buttons>
+        </Modal>
+        </>
     )
 
 }

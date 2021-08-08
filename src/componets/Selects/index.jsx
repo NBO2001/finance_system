@@ -20,9 +20,10 @@ import Select from "react-select";
    };
 
 
-const Selects = ({options, onChange}) => {
+const Selects = ({defaultValue,options, onChange}) => {
      return (
           <Select 
+          defaultValue={defaultValue}
           styles={colourStyles}
           onChange={onChange} options={options} />
      )

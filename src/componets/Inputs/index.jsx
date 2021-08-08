@@ -1,7 +1,10 @@
 import { InputDefaul } from "./style";
-const Inputs = ({type,name,onChange, placeholder}) => {
+const Inputs = ({defaultValue,value,type,name,onChange, placeholder}) => {
      return(
-          <InputDefaul type={type} name={name} onChange={onChange} placeholder={placeholder}/>
+          <InputDefaul
+          defaultValue={defaultValue}
+          value={value} type={type}
+          name={name} onChange={onChange} placeholder={placeholder}/>
      )
 }
 

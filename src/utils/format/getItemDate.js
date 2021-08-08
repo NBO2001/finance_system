@@ -6,6 +6,8 @@ const getItemDate = (date, index) => {
      let sepItens = dateSp[0].split("-");
 
      switch(index){
+          case "full":
+               return dateSp[0];
           case "year":
                return sepItens[0];
           case "month":
