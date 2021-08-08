@@ -20,3 +20,6 @@ export { default as CicloButtons } from "./CicloButtons";
 export { default as LabelSituation} from "./LabelSituation";
 export { default as SpanValue} from "./SpanValue";
 export { default as FormAlterItem } from "./FormAlterItem";
+export { default as CardDashYear} from "./CardDashYear";
+export { default as DivDashYear} from "./DivDashYear";
+export { default as TableYear} from "./TableYear";
