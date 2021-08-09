@@ -31,7 +31,7 @@ const Month = () => {
                     <Buttons type="button" typeButton="default-outline" onClick={() => handleClick()}>Voltar</Buttons>
                 </DivGeneric>
 
-                <DivGeneric height="300px" typeDiv="alings-center">
+                <DivGeneric height="300px" width="95vw" typeDiv="alings-center">
                     <CardDash />
                 </DivGeneric>
 

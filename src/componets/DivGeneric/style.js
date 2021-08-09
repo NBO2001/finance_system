@@ -27,6 +27,7 @@ export const DivItensCenter = styled.div`
      width: ${(props) => props.width? props.width: "100vw"};
      min-height: ${(props) => props.height? props.height: "50vh"};
      display: flex;
+     margin-bottom: 1rem;
      flex-direction: row;
      justify-content: center;
      align-items: center;

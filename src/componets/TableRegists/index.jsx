@@ -3,12 +3,12 @@ import { memo, useState } from "react";
 import { useSelector } from "react-redux";
 import dataFilterType from "../../utils/functions/dataFilterType";
 import deleteRegister from "../../utils/requests/deleteRegister";
-import returnArrayFilters from "../../utils/functions/returnArrayFilters";
 import getSituation from "../../utils/format/getSituation";
 import getItemDate from "../../utils/format/getItemDate";
 import orderArray from "../../utils/format/ordeArray";
 import returnItemForId from "../../utils/requests/returnItemForId";
-import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue, LabelSituation, Buttons, Modal, FormAlterItem } from "../../componets";
+import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue,
+     LabelSituation, Buttons, Modal, FormAlterItem, SelectsMult } from "../../componets";
 
 const TableRegists = () => {
     let [filter, setFilter] = useState({
@@ -21,10 +21,6 @@ const TableRegists = () => {
 
     const { regData } = useSelector(state => state.dataMonth);
     
-    const addFilterState = (filterValue) => {
-        setFilter(returnArrayFilters(filter, filterValue))
-    }
-
     const regDelete = async (id) => {
         if(!id) return false;
         await deleteRegister(id)
@@ -65,7 +61,17 @@ const TableRegists = () => {
             setModalOpened(true);
         })
     }
-
+    const addFilter = (e) => {
+        let type = [];
+        e.map((val) => {
+            type.push(parseInt(val.value));
+            return true;
+        })
+        setFilter({
+            ...filter,
+            type
+        })
+    }
     let days = getDays();
     const buttonDelete = (idd) => {
         setContent(
@@ -76,18 +82,27 @@ const TableRegists = () => {
         )
         setModalOpened(true);
     };
-    
+    const options = [
+        {value:'1', label: 'Receita'},
+        {value: '2', label: 'Investimento'},
+        {value: '3', label: 'Dívida'}
+    ];
     useEffect(() => {
         const dataFilter = dataFilterType(regData, filter.type);
         setData(dataFilter);
     },[filter, regData]);
     return(
         <>
-       <DivGeneric typeDiv="center-with-collumn">
+        <DivGeneric typeDiv="with-margin">
+           <SelectsMult defaultValue={[options[0],options[1],options[2]]} options={options} name="filters" onChange={addFilter} />
+        </DivGeneric>
+
+       <DivGeneric width="99vw" typeDiv="center-with-collumn">
             {days && days.map((day) => {
                 return(
                     <ConteinnerDay key={`Day${day}`} title={day}>
-                        {data && data.map((obj) => {
+                    {data && data.map((obj) => {
+
                             if(day ===  getItemDate(obj)){
                                 return (
                                     <DivItem key={obj.id}>
@@ -114,6 +129,7 @@ const TableRegists = () => {
                             }else{
                                 return false;
                             }
+
                         })}
                     </ConteinnerDay>
                 )
