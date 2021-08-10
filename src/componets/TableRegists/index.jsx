@@ -1,16 +1,19 @@
 import { useEffect } from "react";
 import { memo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import dataFilterType from "../../utils/functions/dataFilterType";
 import deleteRegister from "../../utils/requests/deleteRegister";
 import getSituation from "../../utils/format/getSituation";
 import getItemDate from "../../utils/format/getItemDate";
 import orderArray from "../../utils/format/ordeArray";
+import  { setAlert } from "../../redux/modules/alerts";
 import returnItemForId from "../../utils/requests/returnItemForId";
 import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue,
      LabelSituation, Buttons, Modal, FormAlterItem, SelectsMult } from "../../componets";
+    
 
 const TableRegists = () => {
+    const dispatch = useDispatch();
     let [filter, setFilter] = useState({
         type: [],
         situation: false
@@ -21,13 +24,12 @@ const TableRegists = () => {
 
     const { regData } = useSelector(state => state.dataMonth);
     
-    const regDelete = async (id) => {
+    const regDelete = (id) => {
         if(!id) return false;
-        await deleteRegister(id)
+        deleteRegister(id)
         .then((res) => {
+            dispatch(setAlert(res));
             setModalOpened(false);
-        }).catch((err) => {
-            console.log(err)
         })
     }
 

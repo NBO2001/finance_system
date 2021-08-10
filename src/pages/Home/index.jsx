@@ -4,9 +4,11 @@ import AddSumDispatch from "../../utils/functions/AddSumDispatch";
 import { DivMonth, DivYear, Modal, SectionWhite,
     TopBar, Buttons, DivCards, FormAddRegister } from "../../componets";
 
+
 const Home = () => {
     const month = 8;
     const year = 2021;
+ 
     let history = useHistory();
     const [modalOpened, setModalOpened] = useState(false);
     AddSumDispatch(month, year, false);

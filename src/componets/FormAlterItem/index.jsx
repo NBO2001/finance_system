@@ -2,9 +2,12 @@ import {Form, Inputs, Selects, Buttons} from "../../componets";
 import { useState, memo } from "react";
 import updateItem from "../../utils/requests/updateItem";
 import getItemDate from "../../utils/format/getItemDate";
+import { useDispatch } from "react-redux";
+import  { setAlert } from "../../redux/modules/alerts";
 
 
 const FormAlterItem = ({id, data}) => {
+     const dispatch = useDispatch();
      const [register, setRegister] = useState({
           id
      });
@@ -36,11 +39,9 @@ const FormAlterItem = ({id, data}) => {
           {value: "4", label: "Não-Recebido", name:"situation"},
      ];
 
-     const sendBack = async (e) => {
+     const sendBack =  (e) => {
           e.preventDefault();
-          await updateItem(register).then((res) => {
-               console.log(res);
-          });
+          updateItem(register).then((res) => dispatch(setAlert(res)));
       }
 
      return(

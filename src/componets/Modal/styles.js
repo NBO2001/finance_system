@@ -16,7 +16,7 @@ export const Overley = styled.div`
     background-color: rgba(78, 89, 131, 0.5);
     backdrop-filter: blur(5px);
 
-    z-index: 999;
+    z-index: 998;
 
 `;
 

@@ -1,9 +1,11 @@
 import {Form, Inputs, Selects, Buttons} from "../../componets";
 import { useState } from "react";
 import addNewRegister from "../../utils/requests/addNewRegister";
+import { useDispatch } from "react-redux";
+import  { setAlert } from "../../redux/modules/alerts";
 
 const FormAddRegister = () => {
-
+    const dispatch = useDispatch();
      const [register, setRegister] = useState({});
      
      const addValue = (e) => {
@@ -26,6 +28,7 @@ const FormAddRegister = () => {
      const sendBack = async (e) => {
           e.preventDefault();
           await addNewRegister(register).then((res) => {
+                dispatch(setAlert(res))
                e.target.name.value = "";
                e.target.val.value = "";
                e.target.dataLan.value = "";

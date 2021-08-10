@@ -24,3 +24,4 @@ export { default as CardDashYear} from "./CardDashYear";
 export { default as DivDashYear} from "./DivDashYear";
 export { default as TableYear} from "./TableYear";
 export { default as SelectsMult } from "./SelectsMult";
+export { default as ModalAlert } from "./ModalAlert";

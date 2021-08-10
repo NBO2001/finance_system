@@ -1,16 +1,20 @@
 import api from "../../config";
 
-const updateItem = async (data) => {
+const updateItem = (data) => {
      const headers = {
           'headers': {
               'Content-Type': 'application/json'
           }
      }
-     return await api.put('/alter-register', data, headers)
+     return api.put('/alter-register', data, headers)
      .then((res) => {
-          return res;
+          if(res.data.error){
+               return {...res.data, mensage: "Registro não alterado!"}
+          }else{
+               return {...res.data, mensage: "Registro alterado!"}
+          }
      })
-     .catch((err) => err);
+     .catch((err) => ({error: true, mensage: "Erro de rede"}));
 }
 
 export default updateItem;

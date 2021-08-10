@@ -2,6 +2,7 @@ import { memo } from "react";
 import { Home, Month, Year } from './pages';
 import { ThemeProvider } from "styled-components";
 import { Reset } from "styled-reset";
+import { ModalAlert } from "./componets"
 import theme from "./theme";
 import {
   BrowserRouter as Router,
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Reset />
+      <ModalAlert />
       <Router>
         <Switch>
             <Route path="/" component={Home} exact />

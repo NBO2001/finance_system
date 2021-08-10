@@ -24,7 +24,7 @@ const AddSumDispatch = async (month, year, clear) => {
 
 export default AddSumDispatch;
 
-AddSumDispatch.prototype = {
+AddSumDispatch.propType = {
     month: PropTypes.number,
     year: PropTypes.number
 }
