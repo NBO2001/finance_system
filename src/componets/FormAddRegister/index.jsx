@@ -1,14 +1,19 @@
 import {Form, Inputs, Selects, Buttons} from "../../componets";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import addNewRegister from "../../utils/requests/addNewRegister";
 import { useDispatch } from "react-redux";
 import  { setAlert } from "../../redux/modules/alerts";
+import getOptionsValues from "../../utils/format/getOptionsValues";
 
 const FormAddRegister = () => {
     const dispatch = useDispatch();
-     const [register, setRegister] = useState({});
-     
-     const addValue = (e) => {
+    const [register, setRegister] = useState({});
+
+    const [ opt, setOpt ] = useState({});
+
+    const opts = useMemo(() => ({opt, setOpt}),[opt, setOpt ]);
+
+    const addValue = (e) => {
           let keyElement;
           let valElement;
           if(e.target){
@@ -18,13 +23,19 @@ const FormAddRegister = () => {
           }else{
               keyElement = e.name;
               valElement = e.value;
+              if(keyElement === "type"){
+                opts.setOpt(getOptionsValues(parseInt(valElement)));
+              }
           }
           setRegister({
               ...register,
               [keyElement]: valElement
           });
      } 
-
+    const values= [
+        {value: "1", label: opts.opt.one, name:"situation"},
+        {value: "2", label: opts.opt.two, name:"situation"},
+    ]
      const sendBack = async (e) => {
           e.preventDefault();
           await addNewRegister(register).then((res) => {
@@ -49,12 +60,7 @@ const FormAddRegister = () => {
                     ]}/>
                     <Selects
                     onChange={addValue}
-                     options={[
-                        {value: "2", label: "Paga", name:"situation"},
-                        {value: "1", label: "Não-Paga", name:"situation"},
-                        {value: "3", label: "Recebido", name:"situation"},
-                        {value: "4", label: "Não-Recebido", name:"situation"},
-                    ]}/>
+                     options={values}/>
                     <Inputs type="date" name="dataLan" onChange={addValue} />
                     <Buttons typeButton="success-outline" type="submit">Adicionar</Buttons>
           </Form>

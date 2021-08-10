@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const showSum = async (month, year) => {
     return await api.get(`/sumreg/${month}/${year}`)
     .then((res) => res)
-    .catch(() => false);
+    .catch((err) => ({ error: true, mensage: 'Erro de comunicação'}));
 }
 
 export default showSum;

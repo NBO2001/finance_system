@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 
 const getItemDate = (date, index) => {
      if(!date){return false;}
@@ -18,3 +19,8 @@ const getItemDate = (date, index) => {
 }
 
 export default getItemDate;
+
+getItemDate.PropTypes = {
+     date: PropTypes.object,
+     index: PropTypes.string
+}

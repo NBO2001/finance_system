@@ -1,5 +1,5 @@
 import { memo, useState, useEffect } from "react";
-import { SpanValue } from "../../componets";
+import { SpanValue,Skeletons } from "../../componets";
 import { Conteinner, Title, ConteinterElementes } from "./style";
 import getSumYear from "../../utils/requests/getSumYear";
 
@@ -15,7 +15,7 @@ const DivDashYear = ({yearName, onClick}) => {
         })
         
     },[yearName]);
-
+    if(!valsYear) return (<Skeletons  width="450px" height="300px" />);
     return(
         <Conteinner>
              <Title>{yearName}</Title>

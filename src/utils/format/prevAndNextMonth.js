@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const prevAndNextMonth = (date, direction) => {
      let month;
      let year = date.year;
@@ -33,3 +35,8 @@ const prevAndNextMonth = (date, direction) => {
 }
 
 export default prevAndNextMonth;
+
+prevAndNextMonth.PropTypes = {
+     date: PropTypes.obj,
+     direction: PropTypes.string
+}

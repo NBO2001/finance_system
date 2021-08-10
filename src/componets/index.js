@@ -25,3 +25,5 @@ export { default as DivDashYear} from "./DivDashYear";
 export { default as TableYear} from "./TableYear";
 export { default as SelectsMult } from "./SelectsMult";
 export { default as ModalAlert } from "./ModalAlert";
+export { default as PageError } from "./PageError";
+export { default as Skeletons} from "./Skeletons";

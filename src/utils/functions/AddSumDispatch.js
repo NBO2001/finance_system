@@ -5,19 +5,19 @@ import PropTypes from "prop-types";
 
 import { setSums, setConsultMonth } from "../../redux/modules/resulSum";
 
-const AddSumDispatch = async (month, year, clear) => {
+const AddSumDispatch = async (date, clear) => {
     
     const dispatch = useDispatch();
     clear && dispatch(setSums());
 
-    const { data } = await showSum(month, year)
-    .then((res) => {
-        return res;
-    });
+    const  datas  = await showSum(date.month, date.year);
+    if(datas.error) return datas;
+
+    const { data } = datas;
     if(data){
         dispatch(setSums(data));
         let [ { inMonth }] = data;
-        dispatch(setConsultMonth({inMonth, mon: month}));
+        dispatch(setConsultMonth({inMonth, mon: date.month}));
     }
     
 }
@@ -25,6 +25,5 @@ const AddSumDispatch = async (month, year, clear) => {
 export default AddSumDispatch;
 
 AddSumDispatch.propType = {
-    month: PropTypes.number,
-    year: PropTypes.number
+    date: PropTypes.object
 }
