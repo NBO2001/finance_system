@@ -1,9 +1,7 @@
 import Portal from "./Portal";
 import styled from "styled-components";
-import { useSelector ,useDispatch } from "react-redux";
-import { setAlert } from "../../redux/modules/alerts";
-import { memo, useState, useContext, useMemo } from "react";
-import { UseContext } from "../../UseContext";
+import { useSelector } from "react-redux";
+import { memo, useState, useMemo } from "react";
 
 export const Alert = styled.div`
      position: fixed;

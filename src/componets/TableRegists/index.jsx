@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { memo, useState } from "react";
+import { useEffect, useContext,memo, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import dataFilterType from "../../utils/functions/dataFilterType";
 import deleteRegister from "../../utils/requests/deleteRegister";
@@ -7,6 +6,7 @@ import getSituation from "../../utils/format/getSituation";
 import getItemDate from "../../utils/format/getItemDate";
 import orderArray from "../../utils/format/ordeArray";
 import  { setAlert } from "../../redux/modules/alerts";
+import { Update } from "../../pages/Month/Update";
 import returnItemForId from "../../utils/requests/returnItemForId";
 import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue,
      LabelSituation, Buttons, Modal, FormAlterItem, SelectsMult } from "../../componets";
@@ -14,6 +14,7 @@ import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue,
 
 const TableRegists = () => {
     const dispatch = useDispatch();
+    const [ val, setVal] = useContext(Update);
     let [filter, setFilter] = useState({
         type: [],
         situation: false
@@ -29,6 +30,7 @@ const TableRegists = () => {
         deleteRegister(id)
         .then((res) => {
             dispatch(setAlert(res));
+            setVal(!val)
             setModalOpened(false);
         })
     }

@@ -2,9 +2,10 @@ import { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { TableRegists, SectionWhite,TopBar,Buttons,
      DivGeneric, CardDash, Modal, FormAddRegister } from "../../componets";
-
+import { Update } from "./Update";
 const Month = () => {
-
+    
+    const [ val, setVal] = useState(false);
     let history = useHistory();
 
     const [modalOpened, setModalOpened] = useState(false);
@@ -21,28 +22,30 @@ const Month = () => {
 
     return(
         <>
-            <SectionWhite>
+        <SectionWhite>
 
-                <TopBar>
-                    <Buttons onClick={() => openModal()} typeButton="success" type="button" > Adicionar valor</Buttons>
-                </TopBar>
+            <TopBar>
+                <Buttons onClick={() => openModal()} typeButton="success" type="button" > Adicionar valor</Buttons>
+            </TopBar>
 
-                <DivGeneric typeDiv="with-margin">
-                    <Buttons type="button" typeButton="default-outline" onClick={() => handleClick()}>Voltar</Buttons>
-                </DivGeneric>
-
+            <DivGeneric typeDiv="with-margin">
+                <Buttons type="button" typeButton="default-outline" onClick={() => handleClick()}>Voltar</Buttons>
+            </DivGeneric>
+        
+            <Update.Provider value={[ val, setVal]}>
                 <DivGeneric height="300px" width="95vw" typeDiv="alings-center">
                     <CardDash />
                 </DivGeneric>
 
                 <TableRegists />
-        
-            </SectionWhite>
+            </Update.Provider>
+    
+        </SectionWhite>
 
-            <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
-                <FormAddRegister />
-                <Buttons typeButton="exit" onClick={() => setModalOpened(false)}>Sair</Buttons>
-            </Modal>
+        <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
+            <FormAddRegister />
+            <Buttons typeButton="exit" onClick={() => setModalOpened(false)}>Sair</Buttons>
+        </Modal>
         </>
     )
 

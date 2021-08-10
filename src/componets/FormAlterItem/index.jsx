@@ -1,13 +1,16 @@
 import {Form, Inputs, Selects, Buttons} from "../../componets";
-import { useState, memo } from "react";
+import { useState, memo, useContext } from "react";
 import updateItem from "../../utils/requests/updateItem";
 import getItemDate from "../../utils/format/getItemDate";
 import { useDispatch } from "react-redux";
 import  { setAlert } from "../../redux/modules/alerts";
-
+import { Update } from "../../pages/Month/Update";
 
 const FormAlterItem = ({id, data}) => {
      const dispatch = useDispatch();
+     
+     const [ val, setVal] = useContext(Update);
+
      const [register, setRegister] = useState({
           id
      });
@@ -41,7 +44,10 @@ const FormAlterItem = ({id, data}) => {
 
      const sendBack =  (e) => {
           e.preventDefault();
-          updateItem(register).then((res) => dispatch(setAlert(res)));
+          updateItem(register).then((res) => {
+               dispatch(setAlert(res))
+               setVal(!val)
+          });
       }
 
      return(
