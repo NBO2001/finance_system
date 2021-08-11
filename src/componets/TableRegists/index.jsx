@@ -111,7 +111,7 @@ const TableRegists = () => {
                                 return (
                                     <DivItem key={obj.id}>
                                         <DivGeneric width="350px" typeDiv="flex-row">
-
+                                        
                                             <CicloButtons typeButton={obj.type}/>
 
                                             <DivGeneric height="55px">

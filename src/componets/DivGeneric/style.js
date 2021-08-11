@@ -13,6 +13,9 @@ export const DivMargin = styled.div`
      width: ${(props) => props.width? props.width: "50vw"};
      height: ${(props) => props.height};
      margin: 10px;
+     @media screen and (max-width:922px) {
+          width: 96vw;
+     }
 `;
 
 export const FlexRow = styled.div`
@@ -20,6 +23,9 @@ export const FlexRow = styled.div`
      align-items: center;
      justify-content: space-between;
      min-width: ${(props) => props.width};
+     @media screen and (max-width:370px) {
+          min-width: 95%;
+     }
 `;
 
 

@@ -12,6 +12,10 @@ export const ButtonR = styled.p`
      font-size: 2em;
      font-weight: bold;
      border-radius: 50%;
+     @media screen and (max-width:370px) {
+          height: 3rem;
+          width: 3rem;
+     }
 `;
 export const ButtonG = styled(ButtonR)`
      background: ${(props) => props.theme.alerts.danger};

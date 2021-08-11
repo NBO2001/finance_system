@@ -6,4 +6,10 @@ export const Wrapper = styled.div`
      display: flex;
      align-items: center;
      justify-content: space-around;
+     @media screen and (max-width:922px) {
+          display: flex;
+          flex-direction:column;
+          align-items: center;
+          justify-content: space-around;
+     }
 `;

@@ -84,6 +84,10 @@ export const ButtonEdit = styled.button`
      :hover{
           color: ${(props) => props.theme.colors.backgroud};
      }
+     @media screen and (max-width:370px) {
+          height: 3rem;
+          width: 3rem;
+     }
 `;
 
 export const ButtonDelete = styled(ButtonEdit)`

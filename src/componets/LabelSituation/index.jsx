@@ -9,6 +9,10 @@ export const P = styled.p`
      align-items: center;
      justify-content: center;
      background: ${(props) => props.theme.alerts.success};
+     @media screen and (max-width:370px) {
+          width: 4rem;
+          font-size: 0.7em;
+     }
 `;
 
 export const PD = styled(P)`

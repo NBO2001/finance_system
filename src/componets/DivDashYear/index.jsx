@@ -10,6 +10,7 @@ const DivDashYear = ({yearName, onClick}) => {
 
         getSumYear(yearName)
         .then((res) => {
+            if(!res) return false;
             let [ obj ] = res.data;
             setValsYear(obj.inYear);
         })

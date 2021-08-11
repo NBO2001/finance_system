@@ -6,7 +6,6 @@ import { Conteinner, Title, ConteinterElementes } from "./style";
 const DivMonthDeth = ({dateNow}) => {
 
     const [valsMonth, setValsMonth] = useState();
-
     const { month } = useSelector((state) => state.resulSum);
     
     const mont = (sums) => {

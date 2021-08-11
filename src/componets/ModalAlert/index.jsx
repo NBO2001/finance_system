@@ -4,11 +4,10 @@ import { useSelector } from "react-redux";
 import { memo, useState, useMemo } from "react";
 
 export const Alert = styled.div`
-     position: fixed;
-     height: 50px;
-     width: 400px;
+     
+     height: 40px;
+     
      top: 20px;
-     left: 30%;
      display: flex;
      flex-direction: column;
      justify-content: center;
@@ -18,9 +17,18 @@ export const Alert = styled.div`
      color: black;
      border-radius: 15px;
      align-items: center;
-     font-size: 1.5em;
+     font-size: 1.2em;
      padding: 15px;
      z-index: 999;
+
+`;
+export const Conteinner = styled.div`
+     position: fixed;
+     width: 90vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
 
 `;
 export const AlertDanger = styled(Alert)`
@@ -46,16 +54,22 @@ const ModalAlert = () => {
           
           if(itemAlert){
                if(itemAlert.error){
-                    setContent( <Portal>
-                         <AlertDanger>
-                              {itemAlert.mensage}
-                         </AlertDanger>
+                    setContent(
+                    <Portal>
+                         <Conteinner>
+                              <AlertDanger>
+                                   {itemAlert.mensage}
+                              </AlertDanger>
+                         </Conteinner>
                     </Portal>)
                }else{
-                    setContent( <Portal>
-                         <AlertSuccess>
-                              {itemAlert.mensage}
-                         </AlertSuccess>
+                    setContent( 
+                    <Portal>
+                         <Conteinner>
+                              <AlertSuccess>
+                                   {itemAlert.mensage}
+                              </AlertSuccess>
+                         </Conteinner>
                     </Portal>)
                }
                setTimeout(() => {setContent(null)},2500)

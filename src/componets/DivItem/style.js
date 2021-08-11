@@ -7,7 +7,12 @@ export const Conteinner = styled.div`
      padding: 0.5rem;
      display: flex;
      flex-direction: row;
-     justify-content: space-between;
+     justify-content: space-around;
      align-items: center;
      margin-bottom: 5px;
+     @media screen and (max-width:570px) {
+          display: flex;
+          flex-direction: column;
+          min-height: 7rem;
+     }
 `;

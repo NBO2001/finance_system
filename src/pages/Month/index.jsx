@@ -15,7 +15,6 @@ const Month = () => {
         history.push(`/${away}`);
    }
 
-
     const openModal = () => {
         setModalOpened(true);
     }
