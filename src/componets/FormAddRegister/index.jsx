@@ -4,6 +4,7 @@ import addNewRegister from "../../utils/requests/addNewRegister";
 import { useDispatch } from "react-redux";
 import  { setAlert } from "../../redux/modules/alerts";
 import getOptionsValues from "../../utils/format/getOptionsValues";
+import validadeForm from "../../utils/functions/validadeForm";
 
 const FormAddRegister = () => {
     const dispatch = useDispatch();
@@ -38,12 +39,21 @@ const FormAddRegister = () => {
     ]
      const sendBack = async (e) => {
           e.preventDefault();
-          await addNewRegister(register).then((res) => {
-                dispatch(setAlert(res))
-               e.target.name.value = "";
-               e.target.val.value = "";
-               e.target.dataLan.value = "";
-          });
+          const data = validadeForm(register);
+          if(data){
+              await addNewRegister(data).then((res) => {
+                    dispatch(setAlert(res))
+                   e.target.name.value = "";
+                   e.target.val.value = "";
+                   e.target.dataLan.value = "";
+              });
+
+          }else{
+            dispatch(setAlert({
+                error: true,
+                mensage: "Preencha os campos"
+            }))
+          }
       }
 
      return(

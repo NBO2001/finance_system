@@ -24,14 +24,6 @@ const LabelSituation = ({situation, children}) => {
      switch(parseInt(situation)){
           case 1:
                return(
-                    <PD>{children}</PD>
-               )
-          case 2:
-               return(
-                    <P>{children}</P>
-               )
-          case 3:
-               return(
                     <P>{children}</P>
                )
           default:

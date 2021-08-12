@@ -1,19 +1,31 @@
 import {Form, Inputs, Selects, Buttons} from "../../componets";
-import { useState, memo, useContext } from "react";
+import { useState, memo, useContext, useMemo } from "react";
 import updateItem from "../../utils/requests/updateItem";
 import getItemDate from "../../utils/format/getItemDate";
 import { useDispatch } from "react-redux";
 import  { setAlert } from "../../redux/modules/alerts";
 import { Update } from "../../pages/Month/Update";
+import getOptionsValues from "../../utils/format/getOptionsValues";
+import validateFormUpdate from "../../utils/functions/validateFormUpdate";
+import getSituation from "../../utils/format/getSituation";
 
 const FormAlterItem = ({id, data}) => {
      const dispatch = useDispatch();
      
      const [ val, setVal] = useContext(Update);
 
+    const [ opt, setOpt ] = useState(getOptionsValues(parseInt(data.type)));
+
+    const opts = useMemo(() => ({opt, setOpt}),[opt, setOpt ]);
+
      const [register, setRegister] = useState({
           id
      });
+
+     const defaulSit = [
+          {label: getSituation(data.type,data.situation)},
+     ]
+    
      const addValue = (e) => {
           let keyElement;
           let valElement;
@@ -24,6 +36,9 @@ const FormAlterItem = ({id, data}) => {
           }else{
               keyElement = e.name;
               valElement = e.value;
+              if(keyElement === "type"){
+               opts.setOpt(getOptionsValues(parseInt(valElement)));
+             }
           }
           setRegister({
               ...register,
@@ -35,21 +50,30 @@ const FormAlterItem = ({id, data}) => {
           {value: "2", label: "Investiomento", name:"type"},
           {value: "3", label: "Dívida", name:"type"},
      ];
-     const situation = [
-          {value: "1", label: "Não-Paga", name:"situation"},
-          {value: "2", label: "Paga", name:"situation"},
-          {value: "3", label: "Recebido", name:"situation"},
-          {value: "4", label: "Não-Recebido", name:"situation"},
-     ];
+     const situation= [
+          {value: "1", label: opts.opt.one, name:"situation"},
+          {value: "2", label: opts.opt.two, name:"situation"},
+     ]
 
      const sendBack =  (e) => {
           e.preventDefault();
-          updateItem(register).then((res) => {
-               dispatch(setAlert(res))
-               setVal(!val)
-          });
-      }
+          const update = validateFormUpdate(register);
 
+          if(update){
+               updateItem(update).then((res) => {
+                    dispatch(setAlert(res))
+                    setVal(!val)
+               });
+          }else{
+               dispatch(setAlert({
+                    error: true,
+                    mensage: "Nenhum dado alterado"
+               }))
+          }
+    
+     }
+     
+   
      return(
           <Form onSubmit={sendBack}>
                     <Inputs type="text" defaultValue={data && data.name}  name='name' placeholder="Descrição"  onChange={addValue} />
@@ -59,7 +83,8 @@ const FormAlterItem = ({id, data}) => {
                     defaultValue={types[data.type-1]}
                      options={types}/>
                     <Selects
-                     defaultValue={situation[data.situation-1]}
+                    defaultValue={defaulSit}
+                    onChange={addValue}
                      options={situation}/>
                     <Inputs type="date" name="dataLan"  defaultValue={data && getItemDate(data, "full")} onChange={addValue} />
                     <Buttons typeButton="success-outline" type="submit">Alterar</Buttons>

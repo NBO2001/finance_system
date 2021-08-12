@@ -8,6 +8,7 @@ import orderArray from "../../utils/format/ordeArray";
 import  { setAlert } from "../../redux/modules/alerts";
 import { Update } from "../../pages/Month/Update";
 import returnItemForId from "../../utils/requests/returnItemForId";
+import convertNumeberForBrazil from "../../utils/format/convertNumeberForBrazil";
 import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue,
      LabelSituation, Buttons, Modal, FormAlterItem, SelectsMult } from "../../componets";
     
@@ -116,10 +117,10 @@ const TableRegists = () => {
 
                                             <DivGeneric height="55px">
                                                 <p>{obj.name}</p>
-                                                <p>R$: <SpanValue type={obj.type} value={(obj.val).toFixed(2)}/></p>
+                                                <p>R$: <SpanValue type={obj.type} value={convertNumeberForBrazil(obj.val)}/></p>
                                             </DivGeneric>
 
-                                            <LabelSituation situation={obj.situation}> {getSituation(obj.situation)} </LabelSituation>
+                                            <LabelSituation situation={obj.situation}> {getSituation(obj.type,obj.situation)} </LabelSituation>
 
                                         </DivGeneric>
 

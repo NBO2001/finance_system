@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import orderArray from "../../utils/format/ordeArray";
 import retunNameOfMonth from "../../utils/format/retunNameOfMonth";
 import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue} from "../../componets";
+import convertNumeberForBrazil from "../../utils/format/convertNumeberForBrazil";
 
 const TableYear = () => {
 
@@ -38,7 +39,7 @@ const TableYear = () => {
                                              <DivItem key={`${Math.random()} - ${ped.sumtot}`} >
                                                   <DivGeneric width="200px" typeDiv="flex-row">
                                                        <CicloButtons typeButton={ped.type}/>
-                                                       <p>R$: <SpanValue type={ped.type} value={(ped.sumtot).toFixed(2)} /></p>
+                                                       <p>R$: <SpanValue type={ped.type} value={convertNumeberForBrazil(ped.sumtot)} /></p>
                                                   </DivGeneric>
                                              </DivItem>
                                         )
