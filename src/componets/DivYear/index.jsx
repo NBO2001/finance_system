@@ -1,6 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Card, Buttons, DivGeneric, SpanValue } from "../../componets";
+import { Card, Buttons, DivGeneric, SpanValue, Skeletons } from "../../componets";
 import convertNumeberForBrazil from "../../utils/format/convertNumeberForBrazil";
 
 const DivYear = ({yearName, onClick}) => {
@@ -17,6 +17,7 @@ const DivYear = ({yearName, onClick}) => {
     useEffect(() => {
         setValsYear(mont(sum))
     },[valsYear, sum]);
+    if(!valsYear) return (<Skeletons  width="450px" height="430px" />);
 
     return(
         <Card title={yearName}>
