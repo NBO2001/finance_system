@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import  { setAlert } from "../../redux/modules/alerts";
 import getOptionsValues from "../../utils/format/getOptionsValues";
 import validadeForm from "../../utils/functions/validadeForm";
+import { Buffer } from 'buffer';
 
 const FormAddRegister = () => {
     const dispatch = useDispatch();
@@ -39,7 +40,11 @@ const FormAddRegister = () => {
     ]
      const sendBack = async (e) => {
           e.preventDefault();
-          const data = validadeForm(register);
+          const submissionVal = `${register.name}-${register.dataLan}`;
+          const buf = Buffer.from(submissionVal, 'utf8');
+
+          const data = validadeForm({...register, submission: buf.toString('hex'),});
+
           if(data){
               await addNewRegister(data).then((res) => {
                     dispatch(setAlert(res))

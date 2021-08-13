@@ -20,6 +20,7 @@ const validadeForm = (form) => {
      if(!formEnd.type) return false;
      if(!formEnd.situation) return false;
      if(!formEnd.dataLan) return false;
+     if(!formEnd.submission) return false;
 
      return formEnd;
 }
