@@ -1,46 +1,36 @@
-import { memo, useState, useCallback } from "react";
+import { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import getNowDate from "../../utils/format/getNowDate";
 import AddSumDispatch from "../../utils/functions/AddSumDispatch";
 import { DivMonth, DivYear, Modal, SectionWhite,
-    TopBar, Buttons, DivCards, FormAddRegister, PageError } from "../../componets";
+    TopBar, Buttons, DivCards, FormAddRegister } from "../../componets";
 import { useMemo } from "react";
+import { UpdateAlert } from "../../UpdateAlert";
 
 
 const Home = () => {
     
     const date = getNowDate();
 
-    const [ net, setNet ] = useState();
-    const memoNet = useMemo(() => ( {net, setNet} ),[ net, setNet ])
+    const [update, setUpdate] = useState(false);
 
+    const updateAlert = useMemo(() => ({update, setUpdate}),[update, setUpdate])
     let history = useHistory();
     const [modalOpened, setModalOpened] = useState(false);
-    
-    const addSum = useCallback(() => {
-        const server = async () => {
-            const res = await AddSumDispatch(date);
-            
-            if(res && res.error){
-                memoNet.setNet(res.mensage)
 
-            }else{
-                memoNet.setNet(false)
-            }
-        }
-        server();
-    },[date,memoNet]);
-
-    addSum();
+    if(updateAlert.update){
+        AddSumDispatch(date, updateAlert.update);
+        updateAlert.setUpdate(false)
+    }else{
+        AddSumDispatch(date, updateAlert.update);
+    }
 
     const handleClick  = (away) => history.push(`/${away}`);
 
     const openModal = () => setModalOpened(true);
-    
-    if(memoNet.net) return (<PageError />)
 
     return(
-        <>
+        <UpdateAlert.Provider value={updateAlert}>
             <SectionWhite>
                 <TopBar>
                     <Buttons typeButton="success" type="button"  onClick={() => openModal()}> Adicionar valor</Buttons>
@@ -58,7 +48,7 @@ const Home = () => {
                 <FormAddRegister />
                 <Buttons typeButton="exit" onClick={() => setModalOpened(false)}>Sair</Buttons>
             </Modal>
-        </>
+        </UpdateAlert.Provider>
     )
 }
 

@@ -1,23 +1,26 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import showRegisters from "../requests/showRegisters";
 
 import { setRegData } from "../../redux/modules/dataMonth";
 
-const AddRegistersDispatch = async (month, year, clear=false) => {
+const AddRegistersDispatch = async (date, update) => {
+    
     const dispatch = useDispatch();
-    if(month && year){
-        clear && dispatch(setRegData());
+    const select = useSelector((state) => state.dataMonth);
 
-        const { data } = await showRegisters(month, year)
-        .then((res) => {
-            return res;
-        });
+    const callServer = async () => {
+        const { data } = await showRegisters(date.month, date.year);
 
-        if(data && !data.erro){
+        if(data){
             dispatch(setRegData(data.resuls));
         }
+    }
+    if(select.regData){
+        if(update){
+            callServer()
+        }
     }else{
-        return false;
+        callServer()
     }
 
 

@@ -23,7 +23,7 @@ export const ButtonSuccess = styled.button`
      height: 40px;
      min-width: 150px;
      background: ${(props) => props.theme.alerts.success};
-     color: ${(props) => props.theme.colors.backgroud};
+     color: ${(props) => props.theme.colors.text};
      font-weight: bolder;
      font-size: 1.1em;
      border-width: 0;

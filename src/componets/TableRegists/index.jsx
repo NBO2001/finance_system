@@ -6,7 +6,7 @@ import getSituation from "../../utils/format/getSituation";
 import getItemDate from "../../utils/format/getItemDate";
 import orderArray from "../../utils/format/ordeArray";
 import  { setAlert } from "../../redux/modules/alerts";
-import { Update } from "../../pages/Month/Update";
+import { UpdateAlert } from "../../UpdateAlert";
 import returnItemForId from "../../utils/requests/returnItemForId";
 import convertNumeberForBrazil from "../../utils/format/convertNumeberForBrazil";
 import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue,
@@ -15,7 +15,7 @@ import { DivGeneric, ConteinnerDay, DivItem, CicloButtons,SpanValue,
 
 const TableRegists = () => {
     const dispatch = useDispatch();
-    const [ val, setVal] = useContext(Update);
+    const updateAlert = useContext(UpdateAlert);
     let [filter, setFilter] = useState({
         type: [],
         situation: false
@@ -31,8 +31,8 @@ const TableRegists = () => {
         deleteRegister(id)
         .then((res) => {
             dispatch(setAlert(res));
-            setVal(!val)
             setModalOpened(false);
+            updateAlert.setUpdate(true)
         })
     }
 

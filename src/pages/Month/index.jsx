@@ -1,11 +1,14 @@
-import { memo, useState } from "react";
+import { memo, useState, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { TableRegists, SectionWhite,TopBar,Buttons,
      DivGeneric, CardDash, Modal, FormAddRegister } from "../../componets";
-import { Update } from "./Update";
+import { UpdateAlert } from "../../UpdateAlert";
 const Month = () => {
-    
-    const [ val, setVal] = useState(false);
+
+    const [update, setUpdate] = useState(false);
+
+    const updateAlert = useMemo(() => ({update, setUpdate}),[update, setUpdate]);
+
     let history = useHistory();
 
     const [modalOpened, setModalOpened] = useState(false);
@@ -20,7 +23,7 @@ const Month = () => {
     }
 
     return(
-        <>
+        <UpdateAlert.Provider  value={updateAlert}>
         <SectionWhite>
 
             <TopBar>
@@ -30,14 +33,12 @@ const Month = () => {
             <DivGeneric typeDiv="with-margin">
                 <Buttons type="button" typeButton="default-outline" onClick={() => handleClick()}>Voltar</Buttons>
             </DivGeneric>
-        
-            <Update.Provider value={[ val, setVal]}>
-                <DivGeneric height="300px" width="95vw" typeDiv="alings-center">
-                    <CardDash />
-                </DivGeneric>
+           
+            <DivGeneric height="300px" width="95vw" typeDiv="alings-center">
+                <CardDash />
+            </DivGeneric>
 
-                <TableRegists />
-            </Update.Provider>
+            <TableRegists />
     
         </SectionWhite>
 
@@ -45,7 +46,7 @@ const Month = () => {
             <FormAddRegister />
             <Buttons typeButton="exit" onClick={() => setModalOpened(false)}>Sair</Buttons>
         </Modal>
-        </>
+        </UpdateAlert.Provider>
     )
 
 }

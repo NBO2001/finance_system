@@ -19,7 +19,7 @@ export const Alert = styled.div`
      align-items: center;
      font-size: 1.2em;
      padding: 15px;
-     z-index: 999;
+     z-index: 998;
 
 `;
 export const Conteinner = styled.div`

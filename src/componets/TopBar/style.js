@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Bar = styled.div`
-     color: ${(props) => props.theme.colors.backgroud};
+     color: ${(props) => props.theme.colors.text};
      height: 70px;
      background-color: ${(props) => props.theme.colors.contras};
      display: flex;
      align-items: center;
      justify-content: space-between;
+     font-weight: bolder;
 `;
 
 export const Title = styled.h1`

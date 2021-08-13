@@ -4,7 +4,7 @@ import updateItem from "../../utils/requests/updateItem";
 import getItemDate from "../../utils/format/getItemDate";
 import { useDispatch } from "react-redux";
 import  { setAlert } from "../../redux/modules/alerts";
-import { Update } from "../../pages/Month/Update";
+import { UpdateAlert } from "../../UpdateAlert";
 import getOptionsValues from "../../utils/format/getOptionsValues";
 import validateFormUpdate from "../../utils/functions/validateFormUpdate";
 import getSituation from "../../utils/format/getSituation";
@@ -12,7 +12,7 @@ import getSituation from "../../utils/format/getSituation";
 const FormAlterItem = ({id, data}) => {
      const dispatch = useDispatch();
      
-     const [ val, setVal] = useContext(Update);
+     const updateAlert = useContext(UpdateAlert);
 
     const [ opt, setOpt ] = useState(getOptionsValues(parseInt(data.type)));
 
@@ -62,7 +62,7 @@ const FormAlterItem = ({id, data}) => {
           if(update){
                updateItem(update).then((res) => {
                     dispatch(setAlert(res))
-                    setVal(!val)
+                    updateAlert.setUpdate(true)
                });
           }else{
                dispatch(setAlert({

@@ -5,6 +5,7 @@ const theme = {
           backgroudcard: '#f5f6fa',
           backgroudInputs: '#f5f6fa',
           contras: '#FF640A',
+          text: '#1A1A1A',
      },
      alerts: {
           success: '#24FF82',

@@ -1,14 +1,16 @@
 import {Form, Inputs, Selects, Buttons} from "../../componets";
-import { useState, useMemo } from "react";
+import { useState, useMemo,useContext } from "react";
 import addNewRegister from "../../utils/requests/addNewRegister";
 import { useDispatch } from "react-redux";
 import  { setAlert } from "../../redux/modules/alerts";
 import getOptionsValues from "../../utils/format/getOptionsValues";
 import validadeForm from "../../utils/functions/validadeForm";
 import { Buffer } from 'buffer';
+import {UpdateAlert} from "../../UpdateAlert";
 
 const FormAddRegister = () => {
     const dispatch = useDispatch();
+    const updateAlert = useContext(UpdateAlert)
     const [register, setRegister] = useState({});
 
     const [ opt, setOpt ] = useState({});
@@ -42,15 +44,18 @@ const FormAddRegister = () => {
           e.preventDefault();
           const submissionVal = `${register.name}-${register.dataLan}`;
           const buf = Buffer.from(submissionVal, 'utf8');
-
+          
           const data = validadeForm({...register, submission: buf.toString('hex'),});
-
+          
           if(data){
               await addNewRegister(data).then((res) => {
+                    updateAlert.setUpdate(true)
                     dispatch(setAlert(res))
+                    setRegister({type: register.type, 
+                        situation: register.situation, 
+                        dataLan: register.dataLan })
                    e.target.name.value = "";
                    e.target.val.value = "";
-                   e.target.dataLan.value = "";
               });
 
           }else{

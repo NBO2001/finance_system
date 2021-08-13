@@ -10,19 +10,22 @@ export const ValueG = styled(Value)`
 export const ValueI = styled(Value)`
      color: ${(props) => props.theme.alerts.alerta};
 `;   
+export const SpanConteinner = styled.span`
+     color: ${(props) => props.theme.colors.text};
+`;
 const SpanValue = ({type, value}) => {
      switch(parseInt(type)){
           case 2:
                return(
-                    <ValueI>- {value}</ValueI>
+                    <ValueI>- <SpanConteinner>{value}</SpanConteinner></ValueI>
                )
           case 3:
                return(
-                    <ValueG>- {value}</ValueG>
+                    <ValueG>- <SpanConteinner>{value}</SpanConteinner></ValueG>
                )
           default:
                return(
-                    <Value>+ {value}</Value>
+                    <Value>+ <SpanConteinner>{value}</SpanConteinner></Value>
                )
      }
     
