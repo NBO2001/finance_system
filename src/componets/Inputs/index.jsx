@@ -4,7 +4,8 @@ const Inputs = ({defaultValue,value,type,name,onChange, placeholder}) => {
           <InputDefaul
           defaultValue={defaultValue}
           value={value} type={type}
-          name={name} onChange={onChange} placeholder={placeholder}/>
+          name={name} onChange={onChange} placeholder={placeholder}
+          autoComplete="off"/>
      )
 }
 

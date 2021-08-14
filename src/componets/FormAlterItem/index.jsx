@@ -80,6 +80,7 @@ const FormAlterItem = ({id, data}) => {
                     <Inputs type="text" defaultValue={data && data.val} name='val' placeholder="Valor"  onChange={addValue}  />
                  
                     <Selects
+                    onChange={addValue}
                     defaultValue={types[data.type-1]}
                      options={types}/>
                     <Selects
